@@ -1,0 +1,20 @@
+FROM jenkinsxio/builder-base:latest
+MAINTAINER songhuiqing <songhuiqing88@163.com>
+
+# install git 
+RUN yum install -y git
+# copy build tools
+COPY src/jdk1.8.0_121 /usr/local/jdk1.8.0_121
+COPY src/android-sdk /usr/local/android-sdk
+COPY src/apache-ant-1.7.0 /usr/local/apache-ant-1.7.0
+COPY src/gradle-4.6 /usr/local/gradle-4.6
+
+
+# set env
+ENV JAVA_HOME=/usr/local/jdk1.8.0_121
+ENV ANDROID_HOME=/usr/local/android-sdk
+ENV ANT_HOME=/usr/local/apache-ant-1.7.0
+ENV GRADLE_HOME=/usr/local/gradle-4.6
+#ENV NODE_HOME=/usr/local/node-v6.11.2-linux-x64
+
+CMD ["java","-version"]
